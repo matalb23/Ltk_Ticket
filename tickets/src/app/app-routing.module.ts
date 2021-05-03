@@ -39,6 +39,14 @@ const routes: Routes = [
     path: 'help4',
     loadChildren: () => import('./help4/help4.module').then( m => m.Help4PageModule)
   },
+  {
+    path: 'ver-tks/:tipo',
+    loadChildren: () => import('./ver-tks/ver-tks.module').then( m => m.VerTksPageModule)
+  },
+  {
+    path: 'mensaje',
+    loadChildren: () => import('./mensaje/mensaje.module').then( m => m.MensajePageModule)
+  },
 ];
 
 @NgModule({

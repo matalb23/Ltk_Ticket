@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "128430848341",
+    "project_id": "tu-ticket",
+    "storage_bucket": "tu-ticket.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128430848341:android:c28f8eba097c08219cd7dc",
+        "android_client_info": {
+          "package_name": "ltkticket.latikait.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128430848341-la7mklm6cm7vhv6kf75ganejso5ockcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPfrmNLKtpAC9MvmsgRhPyZVjn5xJpfWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128430848341-la7mklm6cm7vhv6kf75ganejso5ockcs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

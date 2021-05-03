@@ -15,6 +15,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { HttpConfigInterceptor } from './service/http-config.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,6 +25,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
     SplashScreen,
     Geolocation,
     Camera,
+   
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor,

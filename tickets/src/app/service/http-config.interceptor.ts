@@ -83,7 +83,7 @@ import {
               async presentLoading() {
                 this.isLoading = true;
                 return await this.loadingCtrl.create({
-                  duration: 50000,
+                  duration: 3000,
                 }).then(a => {
                   a.present().then(() => {
                     if (!this.isLoading) {

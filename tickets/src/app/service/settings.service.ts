@@ -10,6 +10,7 @@ export class SettingsService {
   public static setting_User="USER";
   public static setting_UserName="USERNAME";
   public static setting_UserPass="pass";
+  public static setting_TokenFCM="setting_TokenFCM";
   public  templateForm :any;
 
   

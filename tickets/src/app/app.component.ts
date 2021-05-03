@@ -7,6 +7,7 @@ import {AuthService} from './auth/auth.service';
 import { Router } from  "@angular/router";
 import {SettingsService} from './service/settings.service';
 import { User } from './auth/user';
+import { FcmService } from './service/fcm.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -19,19 +20,22 @@ export class AppComponent {
     private statusBar: StatusBar,
     private auth:AuthService,
     private  router:  Router
-    ,private settings:SettingsService
+    ,private settings:SettingsService,
+    private fcmService: FcmService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      
+      //this.fcmService.initPush();
       this.statusBar.styleDefault();
       
       this.auth.authSubject.subscribe(state => {
         if (state) {
             console.log("user is logged in");
-            this.router.navigateByUrl('home');
+        //    this.router.navigateByUrl('home');
             
         } else {
             console.log("user is NOT logged in");

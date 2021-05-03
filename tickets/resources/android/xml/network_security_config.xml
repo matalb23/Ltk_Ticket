@@ -3,5 +3,7 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
 		<domain includeSubdomains="true">apptkapi.latikait.com.ar</domain>
+        <domain includeSubdomains="true">10.0.0.90</domain>
+        <domain includeSubdomains="true">fonts.googleapis.com</domain>        
     </domain-config>
 </network-security-config>
