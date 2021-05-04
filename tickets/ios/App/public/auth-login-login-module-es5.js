@@ -221,6 +221,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../auth.service */
     "./src/app/auth/auth.service.ts");
+    /* harmony import */
+
+
+    var _capacitor_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @capacitor/core */
+    "./node_modules/@capacitor/core/dist/esm/index.js");
+
+    var Network = _capacitor_core__WEBPACK_IMPORTED_MODULE_4__["Plugins"].Network;
 
     var LoginPage = /*#__PURE__*/function () {
       function LoginPage(authService, router) {
@@ -232,14 +240,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(LoginPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this = this;
+
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    console.log("entro  a ngOnInit");
+                    this.networkListener = Network.addListener('networkStatusChange', function (status) {
+                      console.log("Network status changed", status);
+                      _this.networkStatus = status;
+                    });
+                    _context.next = 4;
+                    return Network.getStatus();
+
+                  case 4:
+                    this.networkStatus = _context.sent;
+
+                  case 5:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "ngOnDestroy",
+        value: function ngOnDestroy() {
+          this.networkListener.remove();
+        }
       }, {
         key: "login",
         value: function login(form) {
-          var _this = this;
+          var _this2 = this;
 
           this.authService.login(form.value).subscribe(function (res) {
-            _this.router.navigateByUrl('help');
+            _this2.router.navigateByUrl('help');
           });
         }
       }]);

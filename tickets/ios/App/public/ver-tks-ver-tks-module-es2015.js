@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>ver-tks</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid>\n    <ion-row *ngFor=\"let tk of tks\">\n      <ion-col>\n        {{ tk.id}}\n      </ion-col>\n      <ion-col>\n        {{ tk.titulo}}\n      </ion-col>\n      <ion-col>\n        {{ tk.EstadoDescripcion}}\n      </ion-col>\n      <ion-col>\n        {{ tk.TipoDescripcion}}\n      </ion-col>\n      <ion-col>\n        {{ tk.PrioridadDescripcion}}\n      </ion-col>\n      <ion-col>\n        <button size=\"large\" expand=\"block\" (click)=\"verTks(tk.id)\" class=\"btn-blue\"\n        >\n        Ver\n      </button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>ver-tks</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid>\n    <ion-row *ngFor=\"let tk of tks\">\n      <ion-col>\n        {{ tk.id}}\n      </ion-col>\n      <ion-col>\n        {{ tk.titulo}}\n      </ion-col>\n      <ion-col>\n        {{ tk.EstadoDescripcion}}\n      </ion-col>\n      <ion-col>\n        {{ tk.TipoDescripcion}}\n      </ion-col>\n      <ion-col>\n        {{ tk.PrioridadDescripcion}}\n      </ion-col>\n      <ion-col>\n        <button size=\"large\" expand=\"block\" (click)=\"opepdf(tk.id)\" class=\"btn-blue\"\n        >\n        Ver\n      </button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>");
 
 /***/ }),
 
@@ -120,14 +120,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/api.service */ "./src/app/service/api.service.ts");
 /* harmony import */ var _service_settings_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/settings.service */ "./src/app/service/settings.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 
 
 
 
 
 
-// import { stringify } from '@angular/compiler/src/util';
-//import { url } from 'inspector';
+
+const { Browser } = _capacitor_core__WEBPACK_IMPORTED_MODULE_5__["Plugins"];
 let VerTksPage = class VerTksPage {
     constructor(api, settings, router, activatedRoute) {
         this.api = api;
@@ -137,6 +138,11 @@ let VerTksPage = class VerTksPage {
     }
     ngOnInit() {
         this.tipo = Number(this.activatedRoute.snapshot.paramMap.get("tipo"));
+    }
+    opepdf(id) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            yield Browser.open({ 'url': 'http://apptkweb.latikait.com.ar/pdf_tk?par_tk=' + id });
+        });
     }
     getTKs() {
         let urltk;

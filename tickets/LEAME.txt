@@ -20,7 +20,10 @@ npx cap sync [android | ios]
 Instead of "public class FileProvider extends android.support.v4.content.FileProvider" 
 replace it with "public class FileProvider extends androidx.core.content.FileProvider".
 
-
+npm install @capacitor/android@3.0.0-beta.3
+better install like this npm install @capacitor/android@next
+It will install latest v3, which it’s RC.0 at the moment, so beta 3 is very old
+(and do it for all the other packages, cli, core and ios)
 
 
 

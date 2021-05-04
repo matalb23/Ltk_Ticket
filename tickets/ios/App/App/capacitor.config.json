@@ -27,5 +27,8 @@
       "SplashScreen": "screen",
       "SplashScreenDelay": "3000"
     }
+  },
+  "server": {
+    "allowNavigation": []
   }
 }

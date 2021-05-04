@@ -311,6 +311,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.VerTksPageModule;
         });
       }
+    }, {
+      path: 'mensaje',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | mensaje-mensaje-module */
+        "mensaje-mensaje-module").then(__webpack_require__.bind(null,
+        /*! ./mensaje/mensaje.module */
+        "./src/app/mensaje/mensaje.module.ts")).then(function (m) {
+          return m.MensajePageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -445,9 +456,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _this.auth.authSubject.subscribe(function (state) {
               if (state) {
-                console.log("user is logged in");
-
-                _this.router.navigateByUrl('home');
+                console.log("user is logged in"); //    this.router.navigateByUrl('home');
               } else {
                 console.log("user is NOT logged in");
                 var user = {};
@@ -885,16 +894,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     var ApiService = /*#__PURE__*/function () {
-      //url: string = "http://10.0.0.90:45455";
-      //  public static urlapi:string="https://esmio-api.conveyor.cloud";
       function ApiService(http) {
         _classCallCheck(this, ApiService);
 
         this.http = http; //url: string = "https://esmio-api.conveyor.cloud";//"https://proyectoemapi.azurewebsites.net";//'https://example.com/api/v1';
         //url: string = "http://www.mdnet.com.ar:45461";
         //url: string = "https://www.mdnet.com.ar:45460";
+        //url: string = "http://apptkapi.latikait.com.ar";
 
-        this.url = "http://apptkapi.latikait.com.ar";
+        this.url = "http://10.0.0.90:45455";
       }
 
       _createClass(ApiService, [{
@@ -1007,18 +1015,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _capacitor_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @capacitor/core */
-    "./node_modules/@capacitor/core/dist/esm/index.js"); // import { dateValueRange } from 'node_modules_x/@ionic/core/dist/types/components/datetime/datetime-util';
-    //import { Router } from '@angular/router';
+    "./node_modules/@capacitor/core/dist/esm/index.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js"); // import { dateValueRange } from 'node_modules_x/@ionic/core/dist/types/components/datetime/datetime-util';
 
 
     var PushNotifications = _capacitor_core__WEBPACK_IMPORTED_MODULE_4__["Plugins"].PushNotifications;
 
     var FcmService = /*#__PURE__*/function () {
-      function FcmService(api, settings) {
+      function FcmService(api, settings, router) {
         _classCallCheck(this, FcmService);
 
         this.api = api;
         this.settings = settings;
+        this.router = router;
       }
 
       _createClass(FcmService, [{
@@ -1090,17 +1104,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   switch (_context4.prev = _context4.next) {
                     case 0:
                       data = notification.notification.data;
-                      console.log('Action performed: ' + JSON.stringify(notification.notification));
+                      console.log('Action performed: ' + JSON.stringify(data)); //  if (data.detailsId) {
+                      //this.router.navigateByUrl(`/mensaje/`);
 
-                      if (data.detailsId) {// this.router.navigateByUrl(`/home/${data.detailsId}`);
-                      }
+                      this.router.navigate(['/mensaje/']); //}
 
                     case 3:
                     case "end":
                       return _context4.stop();
                   }
                 }
-              }, _callee4);
+              }, _callee4, this);
             }));
           });
         }
@@ -1114,6 +1128,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _service_api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"]
       }, {
         type: _service_settings_service__WEBPACK_IMPORTED_MODULE_3__["SettingsService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
       }];
     };
 
@@ -1263,7 +1279,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     this.isLoading = true;
                     _context5.next = 3;
                     return this.loadingCtrl.create({
-                      duration: 50000
+                      duration: 3000
                     }).then(function (a) {
                       a.present().then(function () {
                         if (!_this5.isLoading) {
@@ -1469,7 +1485,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     var environment = {
-      production: false
+      production: true
     };
     /*
      * For easier debugging in development mode, you can import the following file

@@ -498,6 +498,10 @@ const routes = [
         path: 'ver-tks/:tipo',
         loadChildren: () => __webpack_require__.e(/*! import() | ver-tks-ver-tks-module */ "ver-tks-ver-tks-module").then(__webpack_require__.bind(null, /*! ./ver-tks/ver-tks.module */ "./src/app/ver-tks/ver-tks.module.ts")).then(m => m.VerTksPageModule)
     },
+    {
+        path: 'mensaje',
+        loadChildren: () => __webpack_require__.e(/*! import() | mensaje-mensaje-module */ "mensaje-mensaje-module").then(__webpack_require__.bind(null, /*! ./mensaje/mensaje.module */ "./src/app/mensaje/mensaje.module.ts")).then(m => m.MensajePageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -573,7 +577,7 @@ let AppComponent = class AppComponent {
             this.auth.authSubject.subscribe(state => {
                 if (state) {
                     console.log("user is logged in");
-                    this.router.navigateByUrl('home');
+                    //    this.router.navigateByUrl('home');
                 }
                 else {
                     console.log("user is NOT logged in");
@@ -805,14 +809,13 @@ __webpack_require__.r(__webpack_exports__);
 
 const cabecera = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-TYpe': 'application/json' }) };
 let ApiService = class ApiService {
-    //url: string = "http://10.0.0.90:45455";
-    //  public static urlapi:string="https://esmio-api.conveyor.cloud";
     constructor(http) {
         this.http = http;
         //url: string = "https://esmio-api.conveyor.cloud";//"https://proyectoemapi.azurewebsites.net";//'https://example.com/api/v1';
         //url: string = "http://www.mdnet.com.ar:45461";
         //url: string = "https://www.mdnet.com.ar:45460";
-        this.url = "http://apptkapi.latikait.com.ar";
+        //url: string = "http://apptkapi.latikait.com.ar";
+        this.url = "http://10.0.0.90:45455";
     }
     get(endpoint, params, reqOpts) {
         if (!reqOpts) {
@@ -873,18 +876,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/api.service */ "./src/app/service/api.service.ts");
 /* harmony import */ var _service_settings_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/settings.service */ "./src/app/service/settings.service.ts");
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
 
 
 
 
 // import { dateValueRange } from 'node_modules_x/@ionic/core/dist/types/components/datetime/datetime-util';
-//import { Router } from '@angular/router';
+
 const { PushNotifications } = _capacitor_core__WEBPACK_IMPORTED_MODULE_4__["Plugins"];
 let FcmService = class FcmService {
-    constructor(api, settings) {
+    constructor(api, settings, router) {
         this.api = api;
         this.settings = settings;
+        this.router = router;
     }
     initPush() {
         console.log('FcmService');
@@ -926,16 +931,18 @@ let FcmService = class FcmService {
         }));
         PushNotifications.addListener('pushNotificationActionPerformed', (notification) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const data = notification.notification.data;
-            console.log('Action performed: ' + JSON.stringify(notification.notification));
-            if (data.detailsId) {
-                // this.router.navigateByUrl(`/home/${data.detailsId}`);
-            }
+            console.log('Action performed: ' + JSON.stringify(data));
+            //  if (data.detailsId) {
+            //this.router.navigateByUrl(`/mensaje/`);
+            this.router.navigate(['/mensaje/']);
+            //}
         }));
     }
 };
 FcmService.ctorParameters = () => [
     { type: _service_api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"] },
-    { type: _service_settings_service__WEBPACK_IMPORTED_MODULE_3__["SettingsService"] }
+    { type: _service_settings_service__WEBPACK_IMPORTED_MODULE_3__["SettingsService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
 ];
 FcmService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1025,7 +1032,7 @@ let HttpConfigInterceptor = class HttpConfigInterceptor {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.isLoading = true;
             return yield this.loadingCtrl.create({
-                duration: 50000,
+                duration: 3000,
             }).then(a => {
                 a.present().then(() => {
                     if (!this.isLoading) {
@@ -1134,7 +1141,7 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
-    production: false
+    production: true
 };
 /*
  * For easier debugging in development mode, you can import the following file

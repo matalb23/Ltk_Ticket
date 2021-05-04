@@ -29,8 +29,6 @@
     }
   },
   "server": {
-    "allowNavigation": [],
-    "url": "http://10.0.0.38:8100",
-    "cleartext": true
+    "allowNavigation": []
   }
 }

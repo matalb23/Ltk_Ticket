@@ -119,16 +119,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 
 
 
 
+
+const { Network } = _capacitor_core__WEBPACK_IMPORTED_MODULE_4__["Plugins"];
 let LoginPage = class LoginPage {
     constructor(authService, router) {
         this.authService = authService;
         this.router = router;
     }
     ngOnInit() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            console.log("entro  a ngOnInit");
+            this.networkListener = Network.addListener('networkStatusChange', (status) => {
+                console.log("Network status changed", status);
+                this.networkStatus = status;
+            });
+            this.networkStatus = yield Network.getStatus();
+        });
+    }
+    ngOnDestroy() {
+        this.networkListener.remove();
     }
     login(form) {
         this.authService.login(form.value).subscribe((res) => {
