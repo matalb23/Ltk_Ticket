@@ -12,7 +12,7 @@ export class MensajePage  {constructor(private api:ApiService,private settings:S
 mensajes:any;
 
 async opepdf(id) {
-  await Browser.open({ 'url': 'http://apptkweb.latikait.com.ar/pdf_tk?par_tk='+id });
+  await Browser.open({ 'url': this.settings.GetUrlBackend()+'/pdf_tk?par_tk='+id });
 }
 getMensajes(){
 

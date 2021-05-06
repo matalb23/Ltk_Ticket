@@ -21,7 +21,7 @@ export class VerTksPage  {
     
   }
   async opepdf(id) {
-    await Browser.open({ 'url': 'http://apptkweb.latikait.com.ar/pdf_tk?par_tk='+id });
+    await Browser.open({ 'url': this.settings.GetUrlBackend()+'/pdf_tk?par_tk='+id });
   }
   getTKs(){
    let urltk:String;

@@ -37,4 +37,7 @@ export class SettingsService {
   public GetTemplateForm(){
     return this.templateForm;
   }
+  public GetUrlBackend(){
+    return "http://apptkweb.latikait.com.ar"
+  }
 }
