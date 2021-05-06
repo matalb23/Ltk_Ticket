@@ -1,0 +1,132 @@
+<!--
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title *ngIf="infoUsuario">
+      <p class="titulos-cab">Hola <strong>{{ infoUsuario.usuarioNombre }}</strong></p>
+      <p class="titulos-cab-pagina">ALTA DE TICKET</p>
+    </ion-title>  
+  </ion-toolbar>
+</ion-header>
+-->
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="infoUsuario">
+    <!--
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+-->
+
+
+    <div class="cabeceras">
+      <a routerLink="/login">
+        <img src="../../assets/back.png" style="max-height: 17px;top: 35px;position: absolute;margin-left: 4px;" />
+      </a>
+      <p class="titulos-cab" style=" max-width: 70%;">Hola, <strong>{{infoUsuario.usuarioNombre}} </strong></p>
+      <p class="titulos-cab-pagina">ALTA DE TICKET</p>
+      <a routerLink="/help">
+        <img src="../../assets/menu.png"
+          style="max-height: 17px;position: absolute; top: 35px;float: right; right: 30px;" />
+      </a>
+    </div>
+
+    <div class="cuerpo-internas">
+      <ion-list>
+        <div>
+          <p style=" margin-left: 14px; font-size: 15px;">
+            Elegí una de las siguientes categorías.
+          </p>
+          <ion-item *ngFor="let template of infoUsuario.templates" style="width: 44%;min-height: 120px; float: left;border: 1px solid #dedede;
+    margin: 10px; border-radius: 11px;    box-shadow: 0px 3px 13px 0px #dedede;">
+            <ion-grid style="max-width: 100%; float: left; padding: 0px;">
+              <ion-row>
+                <ion-col style="height: 116px;">
+                  <p class="subtitulos">
+                    {{ template.cabecera.descripcion }}
+                  </p>
+                  <button size="large" expand="block" (click)="crearTemplate(template)" class="btn-blue"
+                    style="position: absolute; bottom: 0px;">
+                    Crear ticket
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item style="width: 44%;min-height: 120px; float: left;border: 1px solid #dedede;
+    margin: 10px; border-radius: 11px;    box-shadow: 0px 3px 13px 0px #dedede;">
+            <ion-grid style="max-width: 100%; float: left; padding: 0px;">
+              <ion-row>
+                <ion-col style="height: 116px;">
+                  <p class="subtitulos">
+                    Tks Asignados
+                  </p>
+                  <!-- verTks(Tipo)
+              1=creado
+              0=asignado
+           -->
+                  <button size="large" expand="block" (click)="verTks(0)" class="btn-blue"
+                    style="position: absolute; bottom: 0px;">
+                    Ver
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item style="width: 44%;min-height: 120px; float: left;border: 1px solid #dedede;
+    margin: 10px; border-radius: 11px;    box-shadow: 0px 3px 13px 0px #dedede;">
+            <ion-grid style="max-width: 100%; float: left; padding: 0px;">
+              <ion-row>
+                <ion-col style="height: 116px;">
+                  <p class="subtitulos">
+                    Tks Creados
+                  </p>
+                  <!-- verTks(Tipo)
+              1=creado
+              0=asignado
+           -->
+                  <button size="large" expand="block" (click)="verTks(1)" class="btn-blue"
+                    style="position: absolute; bottom: 0px;">
+                    Ver
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item style="width: 44%;min-height: 120px; float: left;border: 1px solid #dedede;
+          margin: 10px; border-radius: 11px;    box-shadow: 0px 3px 13px 0px #dedede;">
+                  <ion-grid style="max-width: 100%; float: left; padding: 0px;">
+                    <ion-row>
+                      <ion-col style="height: 116px;">
+                        <p class="subtitulos">
+                          Mensajes
+                        </p>
+                        <!-- verTks(Tipo)
+                    1=creado
+                    0=asignado
+                 -->
+                        <button size="large" expand="block" (click)="verMensajes()" class="btn-blue"
+                          style="position: absolute; bottom: 0px;">
+                          Ver
+                        </button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+
+        </div>
+      </ion-list>
+    </div>
+
+    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  AYUDA 2
+</button>-->
+
+
+  </ng-container>
+</ion-content>
+<ion-footer class="footer">
+  <p class="txt-footer">Copyright © 2020</p>
+</ion-footer>
