@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./mensaje/mensaje.module').then( m => m.MensajePageModule)
   },
   {
-    path: 'template-create',
+    path: 'template-create/:username',
     loadChildren: () => import('./template-create/template-create.module').then( m => m.TemplateCreatePageModule)
   },
   {
@@ -55,4 +55,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModul
+export class AppRoutingModule { }
