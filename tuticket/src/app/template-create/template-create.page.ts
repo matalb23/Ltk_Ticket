@@ -4,6 +4,11 @@ import {SettingsService} from '../service/settings.service';
 //import { Geolocation , GeolocationOptions, Geoposition, PositionError} from '@ionic-native/geolocation/ngx';
 import {ApiService} from '../service/api.service';
 // import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Platform } from '@ionic/angular';
+import { Plugins, CameraResultType, Capacitor, FilesystemDirectory, 
+  CameraPhoto, CameraSource ,Geolocation} from '@capacitor/core';
+
+const { Camera, Filesystem, Storage } = Plugins;
 
 import { LoadingController,ToastController  } from '@ionic/angular';
 import { Router } from  "@angular/router";
@@ -34,7 +39,7 @@ type RequestTkItem = {
   templateUrl: './template-create.page.html',
   styleUrls: ['./template-create.page.scss'],
 })
-export class TemplateCreatePage implements OnInit {
+export class TemplateCreatePage  {
  
   //options: GeolocationOptions;
   Imagenes:RequestImagen[];
@@ -51,9 +56,10 @@ export class TemplateCreatePage implements OnInit {
     private toastCtrl: ToastController,
      private  router:  Router,
      private activatedRoute: ActivatedRoute
+     , private platform: Platform 
     ) { }
 
-  ngOnInit() {
+  Init() {
     // this.options = {
     //   maximumAge: 500,
     //   enableHighAccuracy: true
@@ -63,6 +69,7 @@ export class TemplateCreatePage implements OnInit {
     this.latitude="";
     this.longitude="";
     this.Imagenes=new Array();
+    this.getLocation();
     // this.geolocation.getCurrentPosition(this.options).then((resp) => {
     //   this.latitude= resp.coords.latitude;
     //   this.longitude=resp.coords.longitude;
@@ -80,6 +87,22 @@ export class TemplateCreatePage implements OnInit {
     this.myFormGroup = new FormGroup(group);
     
   }
+  async getLocation() {
+    const position = await Geolocation.getCurrentPosition();
+    this.latitude = position.coords.latitude;
+    this.longitude = position.coords.longitude;
+    console.log("this.latitude"+this.latitude);
+    
+  }
+  async ionViewDidEnter(){
+
+    
+    this.platform.ready().then(() => {
+   this.Init();
+  });
+   
+  }
+
   onSubmit(){
 
 
@@ -131,9 +154,34 @@ export class TemplateCreatePage implements OnInit {
 
 
 } 
-/*
-openCamera(item){
 
+async openCamera(item){
+  try {
+    const profilePicture = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+    });
+   // this.guestPicture = profilePicture.base64String;
+    
+  const date = new Date().valueOf();    
+  const imageName = date+ '.jpeg'; 
+  let rImagen= <RequestImagen>{};
+  rImagen.id=item;
+  rImagen.imageData=profilePicture.base64String;
+  rImagen.image=(<any>window).Ionic.WebView.convertFileSrc(profilePicture.base64String);
+  let imageBlob:any;
+  imageBlob =  this.dataURItoBlob(rImagen.imageData);
+
+  rImagen.imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' })
+  
+  this.Imagenes.push(rImagen);
+  this.presentToast("Imagen Agregada!");
+  } catch (error) {
+    console.error(error);
+    this.presentToast("Imagen no agregada!. ");
+  }
+/*
 
   const options: CameraOptions = {
   quality: 20,
@@ -165,7 +213,9 @@ openCamera(item){
      
     this.presentToast("Imagen no agregada!. ");
 });
-}*/
+*/
+
+}
 dataURItoBlob(dataURI) {
   const byteString = window.atob(dataURI);
   const arrayBuffer = new ArrayBuffer(byteString.length);
