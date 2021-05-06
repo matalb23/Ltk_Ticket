@@ -57,7 +57,10 @@ export class TemplateCreatePage  {
      private  router:  Router,
      private activatedRoute: ActivatedRoute
      , private platform: Platform 
-    ) { }
+    ) { 
+      this.getLocation();
+
+    }
 
   Init() {
     // this.options = {
@@ -69,7 +72,7 @@ export class TemplateCreatePage  {
     this.latitude="";
     this.longitude="";
     this.Imagenes=new Array();
-    this.getLocation();
+   
     // this.geolocation.getCurrentPosition(this.options).then((resp) => {
     //   this.latitude= resp.coords.latitude;
     //   this.longitude=resp.coords.longitude;

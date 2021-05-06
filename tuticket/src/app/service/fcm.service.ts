@@ -52,15 +52,15 @@ export class FcmService {
 
         var data = '{ "login": "'+this.settings.getValue(SettingsService.setting_User) +'", "mobile_so": "'+ Capacitor.platform.substr(0) + '", "mobile_token": "'+token.value+'" }';
         
-        console.log('api datas: ' + JSON.stringify(data)); 
+       // console.log('api datas: ' + JSON.stringify(data)); 
        
         this.api.post2('api/mensajeT',data).subscribe((result) => {
           var respuesta=JSON.parse(JSON.stringify(result)); 
-          console.log('api grabo: ' + respuesta); 
+          console.log('api grabo token fcm: ' + respuesta); 
         });
 
 
-        console.log('My token: ' + JSON.stringify(token));
+      //  console.log('My token: ' + JSON.stringify(token));
       }
     );
  

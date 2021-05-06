@@ -11,8 +11,8 @@ export class ApiService {
   //url: string = "https://esmio-api.conveyor.cloud";//"https://proyectoemapi.azurewebsites.net";//'https://example.com/api/v1';
 //url: string = "http://www.mdnet.com.ar:45461";
 //url: string = "https://www.mdnet.com.ar:45460";
-  //url: string = "http://apptkapi.latikait.com.ar";
-  url: string = "http://10.0.0.90:45455";
+  url: string = "http://apptkapi.latikait.com.ar";
+  //url: string = "http://10.0.0.90:45455";
 
   constructor(public http: HttpClient) { }
   
