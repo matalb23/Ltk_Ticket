@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import{ApiService} from '../service/api.service';
 import{SettingsService} from '../service/settings.service';
-//import { Plugins } from '@capacitor/core';
+
 import { Router } from  "@angular/router";
-//const { Browser } = Plugins;
+
 @Component({
   selector: 'app-mensaje',
   templateUrl: './mensaje.page.html',
@@ -12,8 +12,7 @@ import { Router } from  "@angular/router";
 export class MensajePage  {constructor(private api:ApiService,private settings:SettingsService, private  router:  Router) { }
 mensajes:any;
 
-async opepdf(id) {
- // await Browser.open({ 'url': this.settings.GetUrlBackend()+'/pdf_tk?par_tk='+id });
+async opepdf(id) { 
  this.router.navigate(['/ver-tk/'+id]);
 }
 getMensajes(){

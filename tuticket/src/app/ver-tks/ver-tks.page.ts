@@ -3,8 +3,7 @@ import{ApiService} from '../service/api.service';
 import{SettingsService} from '../service/settings.service';
 import { Router } from  "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-//import { Plugins } from '@capacitor/core';
-//const { Browser } = Plugins;
+
 @Component({
   selector: 'app-ver-tks',
   templateUrl: './ver-tks.page.html',
@@ -22,7 +21,7 @@ export class VerTksPage  {
   }
   async opepdf(id) {
     this.router.navigate(['/ver-tk/'+id]);
-    //await Browser.open({ 'url': this.settings.GetUrlBackend()+'/pdf_tk?par_tk='+id });
+   
   }
   getTKs(){
    let urltk:String;

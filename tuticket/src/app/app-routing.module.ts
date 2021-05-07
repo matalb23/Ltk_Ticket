@@ -39,10 +39,7 @@ const routes: Routes = [
     path: 'ver-tks/:tipo',
     loadChildren: () => import('./ver-tks/ver-tks.module').then( m => m.VerTksPageModule)
   },
-  // {
-  //   path: 'inicio',
-  //   loadChildren: () => import('./auth/inicio/inicio.module').then( m => m.InicioPageModule)
-  // },
+
   {
     path: 'login',
     loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
