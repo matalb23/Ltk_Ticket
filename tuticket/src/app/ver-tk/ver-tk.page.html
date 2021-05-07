@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><b>Ticket:</b> {{id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <b>Ticket:</b> {{id}}<br>
+  <b>Titulo:</b> {{Titulo}}<br>
+  <b>Fecha:</b> {{Fecha}}<br>
+  <b>Creador:</b> {{CreadorNombre}}<br>  
+  <b>Asignado:</b> {{AsignadoNombre}}<br>
+  <b>FechaCumplido:</b> {{FechaCumplido}}<br>
+  <b>Estado:</b> {{EstadoDescripcion}}<br>
+  <b>Prioridad:</b> {{PrioridadDescripcion}}<br>
+  <b>Tipo:</b> {{TipoDescripcion}}<br>
+  <b>Empresa:</b> {{EmpresaNombre}}<br>
+  <b>Terminado:</b> {{Terminado}}<br>
+  <b>propietario:</b> {{propietario}}<br>
+  <b>Descripcion:</b> 
+  <div [innerHTML]="Descripcion">{{Descripcion}}</div>
+  
+</ion-content>

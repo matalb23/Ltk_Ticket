@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InicioPageRoutingModule } from './inicio-routing.module';
+import { VerTkPageRoutingModule } from './ver-tk-routing.module';
 
-import { InicioPage } from './inicio.page';
+import { VerTkPage } from './ver-tk.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioPageRoutingModule
+    VerTkPageRoutingModule
   ],
-  declarations: [InicioPage]
+  declarations: [VerTkPage]
 })
-export class InicioPageModule {}
+export class VerTkPageModule {}
