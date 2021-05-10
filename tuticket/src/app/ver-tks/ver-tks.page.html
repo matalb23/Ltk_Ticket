@@ -33,16 +33,20 @@ propietario -->
         {{ tk.id}}
       </ion-col>
       <ion-col>
-        {{ tk.Titulo}}
+        {{ tk.titulo}}
       </ion-col>
       <ion-col>
-        {{ tk.EstadoDescripcion}}
+        {{tk.fecha | date: 'dd/MM/yyyy H:mm' }} 
+      </ion-col>
+      
+      <ion-col>
+        {{ tk.estadoDescripcion}}
       </ion-col>
       <ion-col>
-        {{ tk.TipoDescripcion}}
+        {{ tk.tipoDescripcion}}
       </ion-col>
       <ion-col>
-        {{ tk.PrioridadDescripcion}}
+        {{ tk.prioridadDescripcion}}
       </ion-col>
       <ion-col>
         <button size="large" expand="block" (click)="opepdf(tk.id)" class="btn-blue"

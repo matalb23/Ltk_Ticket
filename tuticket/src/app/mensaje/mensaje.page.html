@@ -19,7 +19,8 @@
         {{ mensaje.descripcion}}
       </ion-col>
        <ion-col>
-        {{ mensaje.fecha}}
+        
+        {{ mensaje.fecha | date: 'dd/MM/yyyy H:mm' }} 
       </ion-col> 
       <!-- <ion-col >
         {{ mensaje.fechaVisto}}

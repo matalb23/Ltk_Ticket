@@ -38,7 +38,6 @@ export class VerTkPage implements OnInit {
   ////tk:responseTk;
    //a = {} as responseTk;
   tk:any;
-
   id:number;
   Titulo: string;
   Descripcion: string;
@@ -51,11 +50,10 @@ export class VerTkPage implements OnInit {
   TipoDescripcion: string;
   EmpresaNombre: string;  
   Terminado: string;
-  propietario : string;
-
-
-  
+  propietario : string;  
   tkid:number;
+  comentarios:any;
+
   constructor(private api:ApiService,private settings:SettingsService, private  router:  Router  ,
     private activatedRoute: ActivatedRoute) {
  
@@ -88,7 +86,7 @@ export class VerTkPage implements OnInit {
       this.EmpresaNombre= respuesta.empresaNombre;  
       this.Terminado= respuesta.terminado;
       this.propietario = respuesta.propietario;
-      
+      this.comentarios=respuesta.comentarios;
        console.log(data);   
             }
       ,

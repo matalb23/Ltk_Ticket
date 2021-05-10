@@ -36,6 +36,7 @@ export class VerTksPage  {
     
      this.api.get(urltk + "?login=" + this.settings.getValue(SettingsService.setting_User) ).subscribe((data)=> {
       this.tks=data;      
+    //  console.log(data);
            }
      ,
        (err: any) => {

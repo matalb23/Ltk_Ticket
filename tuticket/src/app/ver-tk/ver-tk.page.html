@@ -21,4 +21,28 @@
   <b>Descripcion:</b> 
   <div [innerHTML]="Descripcion">{{Descripcion}}</div>
   
+<br>
+  <b>Comentarios del tk:</b> 
+  <ion-grid>
+    <ion-row *ngFor="let comentario of comentarios">
+
+      <ion-col>
+        <b>Fecha:</b> {{comentario.fecha | date: 'dd/MM/yyyy H:mm' }} 
+      </ion-col>
+      <ion-col>
+        <b>Creador:</b> {{ comentario.creadorNombre}}
+      </ion-col>
+      <ion-col>
+        <b>Asignado:</b> {{ comentario.asignadoNombre}}
+      </ion-col>
+      <ion-col>
+        <b>Estado:</b>  {{ comentario.estadoDescripcion}}
+      </ion-col>
+      <ion-col>
+        <b>Comentario:</b>  {{ comentario.comentario}}
+      </ion-col>
+     
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
