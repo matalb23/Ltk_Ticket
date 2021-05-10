@@ -35,7 +35,7 @@ ionic capacitor run android -l --external
 
 
 chrome://inspect/#devices
-
+http://apptkweb.latikait.com.ar/pdf_tk?par_tk=191
 
 
 
