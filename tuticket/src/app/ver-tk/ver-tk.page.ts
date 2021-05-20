@@ -101,4 +101,16 @@ export class VerTkPage implements OnInit {
     ionViewDidEnter(){
      this.getTK();
    }
+   verTks(tipo)
+   {    
+    this.router.navigate(['/ver-tks/'+tipo]);
+   }
+   irHome()
+   {    
+    this.router.navigate(['/home/']);
+   }
+   verMensajes()
+   {    
+    this.router.navigate(['/mensaje/']);
+   }
 }

@@ -15,9 +15,11 @@ export class VerTksPage  {
     private activatedRoute: ActivatedRoute) { }
   tks:any;
   tipo:number;
+  tipoDescripcion:string;
+  UserName:string;
   ngOnInit() {
     this.tipo = Number(this.activatedRoute.snapshot.paramMap.get("tipo"));
-    
+    this.UserName=this.settings.getValue(SettingsService.setting_UserName);
   }
   async opepdf(id) {
     this.router.navigate(['/ver-tk/'+id]);
@@ -28,10 +30,12 @@ export class VerTksPage  {
     if(this.tipo==1)
     {
       urltk="api/ticket/creado";
+      this.tipoDescripcion="CREADOS";
     }
     else
     {
       urltk="api/ticket/asignado";
+      this.tipoDescripcion="ASIGNADOS";
     }
     
      this.api.get(urltk + "?login=" + this.settings.getValue(SettingsService.setting_User) ).subscribe((data)=> {
@@ -49,5 +53,17 @@ export class VerTksPage  {
    }
    ionViewDidEnter(){
     this.getTKs();
+  }
+  verTks(tipo)
+  {    
+   this.router.navigate(['/ver-tks/'+tipo]);
+  }
+  irHome()
+  {    
+   this.router.navigate(['/home/']);
+  }
+  verMensajes()
+  {    
+   this.router.navigate(['/mensaje/']);
   }
 }

@@ -22,6 +22,7 @@ export class HomePage{
     // this.loading.present();   
      this.api.get("api/template?login=" + this.settings.getValue(SettingsService.setting_User) ).subscribe((data)=> {
       this.infoUsuario=data;
+      this.settings.setValue(SettingsService.setting_UserName,this.infoUsuario.usuarioNombre);
       //alert((JSON.stringify(data)));
            }
      ,
@@ -42,15 +43,17 @@ export class HomePage{
     this.router.navigate(['/template-create/'+this.infoUsuario.usuarioNombre]);
   
    }
+
    verTks(tipo)
-   {
-    //this.router.navigate(['/ver-tks/'+this.infoUsuario.usuarioNombre]);
+   {    
     this.router.navigate(['/ver-tks/'+tipo]);
    }
-
+   irHome()
+   {    
+    this.router.navigate(['/home/']);
+   }
    verMensajes()
-   {
-    //this.router.navigate(['/ver-tks/'+this.infoUsuario.usuarioNombre]);
+   {    
     this.router.navigate(['/mensaje/']);
    }
    async ionViewDidEnter(){

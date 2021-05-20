@@ -22,104 +22,73 @@
 
     <div class="cabeceras">
       <a routerLink="/login">
-        <img src="../../assets/back.png" style="max-height: 17px;top: 35px;position: absolute;margin-left: 4px;" />
+        <img src="../../assets/back.png" style="max-height: 17px;top: 35px;position: absolute;margin-left: 4px;" />        
       </a>
       <p class="titulos-cab" style=" max-width: 70%;">Hola, <strong>{{infoUsuario.usuarioNombre}} </strong></p>
       <p class="titulos-cab-pagina">ALTA DE TICKET</p>
       <a routerLink="/help">
-        <img src="../../assets/menu.png"
-          style="max-height: 17px;position: absolute; top: 35px;float: right; right: 30px;" />
+        <img src="../../assets/help-22.png"
+          style="max-height: 22px;position: absolute; top: 35px;float: right; right: 30px;" />
       </a>
     </div>
 
     <div class="cuerpo-internas">
       <ion-list>
         <div>
-          <p style=" margin-left: 14px; font-size: 15px;">
-            Elegí una de las siguientes categorías.
+          <p style=" margin-left: 14px; font-size: 15px;margin-top: 10px;margin-bottom: 5px;" class="subtitulos cuerpo">
+            Elegí un formulario.
           </p>
-          <ion-item *ngFor="let template of infoUsuario.templates" style="width: 44%;min-height: 120px; float: left;border: 1px solid #dedede;
-    margin: 10px; border-radius: 11px;    box-shadow: 0px 3px 13px 0px #dedede;">
+          <ion-item *ngFor="let template of infoUsuario.templates" style="width: 93%;min-height: 60px;float: left;border: 1px solid #dedede;margin: 10px;border-radius: 11px;box-shadow: 0px 3px 5px 0px #dedede;">
             <ion-grid style="max-width: 100%; float: left; padding: 0px;">
               <ion-row>
-                <ion-col style="height: 116px;">
-                  <p class="subtitulos">
+                <ion-col style="height: 60px;max-width: 60%;">
+                  <p class="subtitulos" style="margin: 14px;font-weight: 700;font-size: 14px;">
                     {{ template.cabecera.descripcion }}
-                  </p>
+                  </p>                  
+                </ion-col>
+                <ion-col>
                   <button size="large" expand="block" (click)="crearTemplate(template)" class="btn-blue"
-                    style="position: absolute; bottom: 0px;">
-                    Crear ticket
+                  style="position: absolute;bottom: 0px;width: 40px;right: 0px;">
+                    <img src="../../assets/edit.png" style="max-height: 30px;" /> 
                   </button>
                 </ion-col>
               </ion-row>
             </ion-grid>
           </ion-item>
-          <ion-item style="width: 44%;min-height: 120px; float: left;border: 1px solid #dedede;
-    margin: 10px; border-radius: 11px;    box-shadow: 0px 3px 13px 0px #dedede;">
-            <ion-grid style="max-width: 100%; float: left; padding: 0px;">
-              <ion-row>
-                <ion-col style="height: 116px;">
-                  <p class="subtitulos">
-                    Tks Asignados
-                  </p>
-                  <!-- verTks(Tipo)
-              1=creado
-              0=asignado
-           -->
-                  <button size="large" expand="block" (click)="verTks(0)" class="btn-blue"
-                    style="position: absolute; bottom: 0px;">
-                    Ver
-                  </button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-item>
-          <ion-item style="width: 44%;min-height: 120px; float: left;border: 1px solid #dedede;
-    margin: 10px; border-radius: 11px;    box-shadow: 0px 3px 13px 0px #dedede;">
-            <ion-grid style="max-width: 100%; float: left; padding: 0px;">
-              <ion-row>
-                <ion-col style="height: 116px;">
-                  <p class="subtitulos">
-                    Tks Creados
-                  </p>
-                  <!-- verTks(Tipo)
-              1=creado
-              0=asignado
-           -->
-                  <button size="large" expand="block" (click)="verTks(1)" class="btn-blue"
-                    style="position: absolute; bottom: 0px;">
-                    Ver
-                  </button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-item>
-
-          <ion-item style="width: 44%;min-height: 120px; float: left;border: 1px solid #dedede;
-          margin: 10px; border-radius: 11px;    box-shadow: 0px 3px 13px 0px #dedede;">
-                  <ion-grid style="max-width: 100%; float: left; padding: 0px;">
-                    <ion-row>
-                      <ion-col style="height: 116px;">
-                        <p class="subtitulos">
-                          Mensajes
-                        </p>
-                        <!-- verTks(Tipo)
-                    1=creado
-                    0=asignado
-                 -->
-                        <button size="large" expand="block" (click)="verMensajes()" class="btn-blue"
-                          style="position: absolute; bottom: 0px;">
-                          Ver
-                        </button>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-item>
-
         </div>
-      </ion-list>
+      </ion-list>      
     </div>
-
+    <!--
+    <div style="width: 90%;margin-left: 5%;">
+      <ion-row>
+        <ion-col>
+        <!-- verTks(Tipo) 1=creado  0=asignado     
+          <button size="large" expand="block" (click)="verTks(0)" class="btn-blue" style="bottom: 0px;text-align: left;font-size: 13px;font-weight: 600;">
+            <img src="../../assets/user.png" style="max-height: 22px; margin-right: 10px;" />Tks Asignados
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div style="width: 90%;margin-left: 5%;">
+      <ion-row>
+        <ion-col>
+        <!-- verTks(Tipo) 1=creado  0=asignado     
+          <button size="large" expand="block" (click)="verTks(1)" class="btn-blue" style="bottom: 0px;text-align: left;font-size: 13px;font-weight: 600;">
+            <img src="../../assets/tks.png" style="max-height: 22px; margin-right: 10px;" /> Tks Creados
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div style="width: 90%;margin-left: 5%;">
+      <ion-row>
+        <ion-col>
+          <button size="large" expand="block" (click)="verMensajes()" class="btn-blue" style="bottom: 0px;text-align: left;font-size: 13px;font-weight: 600;">
+            <img src="../../assets/mensajes.png" style="max-height: 22px; margin-right: 10px;" /> Mensajes
+          </button>
+        </ion-col>
+      </ion-row>
+    </div> 
+  -->
     <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   AYUDA 2
 </button>-->
@@ -127,6 +96,27 @@
 
   </ng-container>
 </ion-content>
-<ion-footer class="footer">
-  <p class="txt-footer">Copyright © 2020</p>
+<ion-footer class="footer2">
+  <ion-row>
+    <ion-col>
+      <button size="large" expand="block"  (click)="irHome()" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/home.png" style="max-height: 30px;" /> <br/> HOME
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verTks(0)" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/mytks.png" style="max-height: 30px;" /> <br/> ASIGNADOS
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verTks(1)" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/tks.png" style="max-height: 30px;" />  <br/> CREADOS
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verMensajes()" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/mensajes.png" style="max-height: 30px;" />  <br/> MENSAJES
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-footer>

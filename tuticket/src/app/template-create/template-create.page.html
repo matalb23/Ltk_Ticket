@@ -14,7 +14,7 @@
   </div> 
 </ion-content>-->
 
-<ion-content>
+<ion-content >
   
   <div class="cabeceras">
     <a routerLink="/home">
@@ -23,11 +23,11 @@
     <p class="titulos-cab" style=" max-width: 70%;">Hola <strong>{{username}} </strong></p>
     <p class="titulos-cab-pagina">ALTA DE TICKET</p>
     <a routerLink="/help">
-      <img src="../../assets/menu.png" style="max-height: 17px;position: absolute; top: 35px;float: right; right: 30px;" />
+      <img src="../../assets/help-22.png" style="max-height: 22px;position: absolute; top: 35px;float: right; right: 30px;" />
     </a>
     </div>
 
-  <div>
+  <div style="margin-bottom: 40px;">
     <br/>
   <p class="subtitulos cuerpo">
   {{template.cabecera.descripcion}}
@@ -71,8 +71,27 @@
   </form>
   </div>
 
-</ion-content>
- </ng-container> 
- <ion-footer class="footer">
-  <p class="txt-footer">Copyright © 2020</p>
-</ion-footer>
+  <ion-footer class="footer2">
+    <ion-row>
+      <ion-col>
+        <button size="large" expand="block" (click)="irHome()" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+          <img src="../../assets/home.png" style="max-height: 30px;" /> <br/> HOME
+        </button>
+      </ion-col>
+      <ion-col>
+        <button size="large" expand="block" (click)="verTks(0)" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+          <img src="../../assets/mytks.png" style="max-height: 30px;" /> <br/> ASIGNADOS
+        </button>
+      </ion-col>
+      <ion-col>
+        <button size="large" expand="block" (click)="verTks(1)" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+          <img src="../../assets/tks.png" style="max-height: 30px;" />  <br/> CREADOS
+        </button>
+      </ion-col>
+      <ion-col>
+        <button size="large" expand="block" (click)="verMensajes()" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+          <img src="../../assets/mensajes.png" style="max-height: 30px;" />  <br/> MENSAJES
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-footer>

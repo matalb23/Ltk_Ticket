@@ -1,48 +1,130 @@
-<ion-header>
+<!--
+  <ion-header>
   <ion-toolbar>
     <ion-title><b>Ticket:</b> {{id}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
+-->
 
 <ion-content>
-  <b>Ticket:</b> {{id}}<br>
+  <div class="cabeceras">
+    <a routerLink="/home">
+      <img src="../../assets/back.png" style="max-height: 17px;top: 35px;position: absolute;margin-left: 4px;"/>
+    </a>
+    <p class="titulos-cab" style=" max-width: 70%;"><strong>{{Titulo}} </strong></p>
+    <p class="titulos-cab-pagina">TICKET {{id}}</p>
+    <a routerLink="/help">
+      <img src="../../assets/help-22.png" style="max-height: 22px;position: absolute; top: 35px;float: right; right: 30px;" />
+    </a>
+  </div>  
+<div style="font-size: 13px;padding: 10px; font-family: Montserrat;">
+  <!--<p class="subtitulos cuerpo">Estos son los tickets que te fueron asignados.</p>-->
+  <!--<b>Ticket:</b> {{id}}<br>
   <b>Titulo:</b> {{Titulo}}<br>
-  <b>Fecha:</b> {{Fecha}}<br>
-  <b>Creador:</b> {{CreadorNombre}}<br>  
-  <b>Asignado:</b> {{AsignadoNombre}}<br>
-  <b>FechaCumplido:</b> {{FechaCumplido}}<br>
   <b>Estado:</b> {{EstadoDescripcion}}<br>
   <b>Prioridad:</b> {{PrioridadDescripcion}}<br>
-  <b>Tipo:</b> {{TipoDescripcion}}<br>
-  <b>Empresa:</b> {{EmpresaNombre}}<br>
-  <b>Terminado:</b> {{Terminado}}<br>
-  <b>propietario:</b> {{propietario}}<br>
-  <b>Descripcion:</b> 
-  <div [innerHTML]="Descripcion">{{Descripcion}}</div>
+  <b>Fecha:</b> {{Fecha}}<br>
+  <b>Creador:</b> {{CreadorNombre}}<br>
+  <b>FechaCumplido:</b> {{FechaCumplido}}<br>
   
-<br>
-  <b>Comentarios del tk:</b> 
-  <ion-grid>
-    <ion-row *ngFor="let comentario of comentarios">
+  <b>Asignado:</b> {{AsignadoNombre}}<br>
+  -->
+  <ion-row style="background: #efefef;padding: 5px;">
+    <ion-col>
+      Estado: <strong style=" text-transform: uppercase;">{{EstadoDescripcion}}</strong>
+    </ion-col>
+    <ion-col>
+      Prioridad: <strong style=" text-transform: uppercase;">{{PrioridadDescripcion}}</strong>
+    </ion-col>
+  </ion-row>
+  <ion-row style="background: #ffffff;padding: 5px;margin-bottom: 5px;border-width: 0px 2px 2px 2px;border-color: #efefef;border-style: solid;">
+    <ion-col>
+      Asignado a: <strong style=" text-transform: uppercase;">{{AsignadoNombre}}</strong>
+    </ion-col>
+  </ion-row>
+  <ion-row style="font-size: 11px;margin-bottom: 2px;border-bottom: 1px solid #d2d2d2;padding-bottom: 2px;">
+    <ion-col style="min-width: 100%;">
+      Creador: <strong>{{CreadorNombre}}</strong>
+    </ion-col>
+    <ion-col style="min-width: 100%;">
+      Creado el día: {{Fecha}}
+    </ion-col>
+    <ion-col style="min-width: 100%;">
+      Cumplido: {{FechaCumplido}}
+    </ion-col>
+  </ion-row>
+  <ion-row style="font-size: 11px;">
+    <ion-col style="min-width: 100%;margin-bottom: 2px;border-bottom: 1px solid #d2d2d2;padding-bottom: 2px;">
+      Propietario: {{propietario}}
+    </ion-col>
+    <ion-col style="min-width: 100%;margin-bottom: 2px;border-bottom: 1px solid #d2d2d2;padding-bottom: 2px;">
+      Empresa: {{EmpresaNombre}}
+    </ion-col>
+    <ion-col style="margin-bottom: 2px;border-bottom: 0px solid #d2d2d2;padding-bottom: 2px;">
+      Tipo: {{TipoDescripcion}}
+    </ion-col>
+    <ion-col style="margin-bottom: 2px;border-bottom: 0px solid #d2d2d2;padding-bottom: 2px;">
+      Terminado: {{Terminado}}
+    </ion-col>
+  </ion-row>
+  
+  <ion-row style="background: #efefef;padding: 5px 5px 5px 5px;margin: 0px 0px 0px 0px;font-weight: 600;color: #244ccc;border-color: #244ccc;border-width: 2px 2px 0px 2px;border-style: solid;">
+    <ion-col>
+      DESCRIPCIÓN
+    </ion-col>
+  </ion-row>  
+  <div style="font-size: 12px;border-color: #244ccc;border-width: 0px 2px 2px 2px;border-style: solid;padding: 5px 5px 5px 5px;" [innerHTML]="Descripcion">{{Descripcion}}</div>
+  
+  <ion-row style="background: #efefef;padding: 5px 5px 5px 5px;margin: 10px 0px 0px 0px;font-weight: 600;color: #0edf81;border-color: #0edf81;border-width: 2px 2px 0px 2px;border-style: solid;">
+    <ion-col>
+      COMENTARIOS
+    </ion-col>
+  </ion-row>
+  
+  <ion-grid style=" border-color: #0edf81; border-width: 0px 2px 2px 2px; border-style: solid; margin-bottom: 20px;">
+    <ion-row *ngFor="let comentario of comentarios" style=" font-size: 11px;">
 
-      <ion-col>
-        <b>Fecha:</b> {{comentario.fecha | date: 'dd/MM/yyyy H:mm' }} 
+      <ion-col style="min-width: 60%;">
+        Fecha: {{comentario.fecha | date: 'dd/MM/yyyy H:mm' }} 
+      </ion-col>      
+      <ion-col style="min-width: 40%; text-align: right;">
+        Estado:  <strong>{{ comentario.estadoDescripcion}}</strong>
+      </ion-col>
+      <ion-col style="min-width: 100%;">
+        Creador: {{ comentario.creadorNombre}}
       </ion-col>
       <ion-col>
-        <b>Creador:</b> {{ comentario.creadorNombre}}
+        Asignado: <strong>{{ comentario.asignadoNombre}}</strong>
       </ion-col>
-      <ion-col>
-        <b>Asignado:</b> {{ comentario.asignadoNombre}}
-      </ion-col>
-      <ion-col>
-        <b>Estado:</b>  {{ comentario.estadoDescripcion}}
-      </ion-col>
-      <ion-col>
-        <b>Comentario:</b>  {{ comentario.comentario}}
+      <ion-col style="font-size: 13px;min-width: 100%;background: #efefef;margin-bottom: 20px;border-bottom: 2px solid #0edf81;padding: 5px;">
+        <strong>Comentario:</strong>  {{ comentario.comentario}}
       </ion-col>
      
     </ion-row>
   </ion-grid>
-
+</div>
 </ion-content>
+<ion-footer class="footer2">
+  <ion-row>
+    <ion-col>
+      <button size="large" expand="block" (click)="irHome()" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/home.png" style="max-height: 30px;" /> <br/> HOME
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verTks(0)" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/mytks.png" style="max-height: 30px;" /> <br/> ASIGNADOS
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verTks(1)" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/tks.png" style="max-height: 30px;" />  <br/> CREADOS
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verMensajes()" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/mensajes.png" style="max-height: 30px;" />  <br/> MENSAJES
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

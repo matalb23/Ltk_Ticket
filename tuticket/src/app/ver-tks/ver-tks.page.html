@@ -1,12 +1,27 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar>
     <ion-title>ver-tks</ion-title>
   </ion-toolbar>
 </ion-header>
+-->
 
 <ion-content>
+  <ng-container>
+    <div class="cabeceras">
+      <a routerLink="/home">
+        <img src="../../assets/back.png" style="max-height: 17px;top: 35px;position: absolute;margin-left: 4px;"/>
+      </a>
+      <p class="titulos-cab" style=" max-width: 70%;">Hola <strong>{{UserName}} </strong></p>
+      <p class="titulos-cab-pagina">VER TICKETS {{tipoDescripcion}}</p>
+      <a routerLink="/help">
+        <img src="../../assets/help-22.png" style="max-height: 22px;position: absolute; top: 35px;float: right; right: 30px;" />
+      </a>
+    </div>  
+  <div>
+    <br/>
+  <p class="subtitulos cuerpo">Listado de tickets {{tipoDescripcion}}.</p>
   <ion-grid>
-    <ion-row *ngFor="let tk of tks">
+    <ion-row *ngFor="let tk of tks" style="box-shadow: 0px 3px 5px 0px #dedede;border: #b2b3b5 1px solid; margin: 2px 2px 10px 2px; border-radius: 0px 0px 20px 0px;">
       <!-- DEL TK PUEDE SALIR ESTOS DATOS 
       id
 Titulo
@@ -28,32 +43,77 @@ EmpresaNombre
 DescripcionSHtml
 Terminado
 propietario -->
-
-      <ion-col>
+    <ion-row style="width:100%;">
+      <ion-col style="max-width: 20%;color: #fff;background-color: #244ccc;font-size: 13px;font-family: 'Montserrat';font-weight: 700;padding: 5px;letter-spacing: 1px;">
         {{ tk.id}}
       </ion-col>
-      <ion-col>
+      <ion-col style="max-width: 66%;  background: #eaeaea;font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding: 5px;">
         {{ tk.titulo}}
+      </ion-col>  
+      <ion-col style="max-width: 14%;">
+        <button size="small" expand="" (click)="opepdf(tk.id)" class="" style="text-align: right;background: #eaeaea;">
+          <img src="../../assets/ver.png" style="max-height: 30px;" /> 
+      </button>
       </ion-col>
-      <ion-col>
-        {{tk.fecha | date: 'dd/MM/yyyy H:mm' }} 
+    </ion-row>    
+    <ion-row style="width:100%;">
+      <ion-col style="font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding:5px 5px 0px 5px;">
+        Estado: <strong>{{ tk.estadoDescripcion}}</strong>
       </ion-col>
-      
-      <ion-col>
-        {{ tk.estadoDescripcion}}
+      <ion-col style="font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding:5px 5px 0px 5px;">
+      {{tk.fecha | date: 'dd/MM/yyyy H:mm' }} 
+    </ion-col>
+    </ion-row>
+    <ion-row style="width:100%;">      
+      <ion-col style="font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding: 0px 5px;">
+        Tipo: <strong>{{ tk.tipoDescripcion}}</strong>
       </ion-col>
-      <ion-col>
-        {{ tk.tipoDescripcion}}
+    </ion-row>
+    <ion-row style="width:100%;">
+      <ion-col style="font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding: 0px 5px;">
+        Prioridad: <strong>{{ tk.prioridadDescripcion}}</strong>
       </ion-col>
+      <!--<ion-col style="max-width: 44px;">
+        <button size="small" expand="" (click)="opepdf(tk.id)" class="" style="text-align: right;">
+          <img src="../../assets/ver.png" style="max-height: 30px;" /> 
+      </button>
+      </ion-col>--> 
+    </ion-row>
+    
+    <!--<ion-row style="width:100%;">
       <ion-col>
-        {{ tk.prioridadDescripcion}}
-      </ion-col>
-      <ion-col>
-        <button size="large" expand="block" (click)="opepdf(tk.id)" class="btn-blue"
-        >
-        Ver
+        <button size="large" expand="block" (click)="opepdf(tk.id)" class="btn-green">
+          <img src="../../assets/tks.png" style="max-height: 30px;" /> VER TICKET
       </button>
       </ion-col>
     </ion-row>
+  -->
+    </ion-row>
   </ion-grid>
+  </div>
+</ng-container>
 </ion-content>
+<ion-footer class="footer2">
+  <ion-row>
+    <ion-col>
+      <button size="large" expand="block" (click)="irHome()" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/home.png" style="max-height: 30px;" /> <br/> HOME
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verTks(0)" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/mytks.png" style="max-height: 30px;" /> <br/> ASIGNADOS
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verTks(1)" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/tks.png" style="max-height: 30px;" />  <br/> CREADOS
+      </button>
+    </ion-col>
+    <ion-col>
+      <button size="large" expand="block" (click)="verMensajes()" class="btn-blue" style="line-height: 14px;background-color: #244ccc;bottom: 0px;font-size: 9px;font-weight: 500;">
+        <img src="../../assets/mensajes.png" style="max-height: 30px;" />  <br/> MENSAJES
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
