@@ -19,7 +19,7 @@
     </div>  
   <div>
     <br/>
-  <p class="subtitulos cuerpo">Listado de tickets {{tipoDescripcion}}.</p>
+  <p class="subtitulos cuerpo">Listado de tickets <strong>{{tipoDescripcion}}</strong>.</p>
   <ion-grid>
     <ion-row *ngFor="let tk of tks" style="box-shadow: 0px 3px 5px 0px #dedede;border: #b2b3b5 1px solid; margin: 2px 2px 10px 2px; border-radius: 0px 0px 20px 0px;">
       <!-- DEL TK PUEDE SALIR ESTOS DATOS 
@@ -44,14 +44,14 @@ DescripcionSHtml
 Terminado
 propietario -->
     <ion-row style="width:100%;">
-      <ion-col style="max-width: 20%;color: #fff;background-color: #244ccc;font-size: 13px;font-family: 'Montserrat';font-weight: 700;padding: 5px;letter-spacing: 1px;">
-        {{ tk.id}}
+      <ion-col style="max-width: 20%;color: #fff;background-color: #244ccc;font-size: 13px;font-family: 'Montserrat';font-weight: 700;padding: 5px;letter-spacing: 1px;line-height: 22px;">
+        # {{ tk.id}}
       </ion-col>
-      <ion-col style="max-width: 66%;  background: #eaeaea;font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding: 5px;">
+      <ion-col style="max-width: 66%;  background: #eaeaea;font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding: 5px;line-height: 22px;">
         {{ tk.titulo}}
       </ion-col>  
       <ion-col style="max-width: 14%;">
-        <button size="small" expand="" (click)="opepdf(tk.id)" class="" style="text-align: right;background: #eaeaea;">
+        <button size="small" expand="" (click)="opepdf(tk.id)" class="" style="text-align: right;background: #eaeaea;width: 100%;border-bottom: 1px solid #eaeaea;">
           <img src="../../assets/ver.png" style="max-height: 30px;" /> 
       </button>
       </ion-col>
@@ -70,7 +70,7 @@ propietario -->
       </ion-col>
     </ion-row>
     <ion-row style="width:100%;">
-      <ion-col style="font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding: 0px 5px;">
+      <ion-col style="font-size: 13px;font-family: 'Montserrat';font-weight: 500;padding: 0px 0px 5px 5px;">
         Prioridad: <strong>{{ tk.prioridadDescripcion}}</strong>
       </ion-col>
       <!--<ion-col style="max-width: 44px;">
