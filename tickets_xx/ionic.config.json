@@ -1,8 +1,0 @@
-{
-  "name": "tickets1",
-  "integrations": {
-    "cordova": {},
-    "capacitor": {}
-  },
-  "type": "angular"
-}

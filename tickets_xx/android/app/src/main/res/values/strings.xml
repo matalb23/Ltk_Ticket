@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Tu Ticket</string>
-    <string name="title_activity_main">Tu Ticket</string>
-    <string name="package_name">ltkticket.latikait.com</string>
-    <string name="custom_url_scheme">ltkticket.latikait.com</string>
-</resources>
