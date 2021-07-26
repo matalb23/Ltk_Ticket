@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup,FormControl, Validators  } from '@angular/forms';
 import {SettingsService} from '../service/settings.service';
@@ -5,34 +6,34 @@ import {SettingsService} from '../service/settings.service';
 import {ApiService} from '../service/api.service';
 // import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Platform } from '@ionic/angular';
-import { Plugins, CameraResultType, Capacitor, FilesystemDirectory, 
-  CameraPhoto, CameraSource ,Geolocation} from '@capacitor/core';
+import { Plugins, CameraResultType, Capacitor, FilesystemDirectory,
+  CameraPhoto, CameraSource } from '@capacitor/core';
 
-const { Camera, Filesystem, Storage } = Plugins;
+const { Camera, Filesystem, Storage, Geolocation } = Plugins;
 
 import { LoadingController,ToastController  } from '@ionic/angular';
-import { Router } from  "@angular/router";
-import { ActivatedRoute } from "@angular/router";
+import { Router } from  '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { templateJitUrl } from '@angular/compiler';
 interface RequestImagen  {
   id: string;
   image;
-  imageData;      
+  imageData;
   imageFile;
-}    
+}
 type RequestTkItem = {
   id: string;
   valor: string;
-  
-}
+
+};
  type RequestTk = {
-   templateId:number;
-   templateDescripcion:string;
+   templateId: number;
+   templateDescripcion: string;
   login: string;
   latitude: number;
   longitude: number;
-  items: RequestTkItem[] 
-}
+  items: RequestTkItem[];
+};
 
 @Component({
   selector: 'app-template-create',
@@ -40,24 +41,26 @@ type RequestTkItem = {
   styleUrls: ['./template-create.page.scss'],
 })
 export class TemplateCreatePage  {
- 
+
   //options: GeolocationOptions;
-  Imagenes:RequestImagen[];
+  Imagenes: RequestImagen[];
   username=null;
   template: any ;
-  latitude:any;
-  longitude:any;
-  myFormGroup:FormGroup;
-  constructor(private settings:SettingsService,private formBuilder: FormBuilder
+  latitude: any;
+  longitude: any;
+  myFormGroup: FormGroup;
+  constructor(private settings: SettingsService,private formBuilder: FormBuilder
     //,private geolocation: Geolocation
-    ,private api:ApiService
+    ,private api: ApiService
     //,private camera: Camera
     ,public loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
      private  router:  Router,
      private activatedRoute: ActivatedRoute
-     , private platform: Platform 
-    ) { 
+     , private platform: Platform
+    ) {
+      this.latitude='';
+      this.longitude='';
       this.getLocation();
 
     }
@@ -68,11 +71,11 @@ export class TemplateCreatePage  {
     //   enableHighAccuracy: true
     // };
 
-    this.username = this.activatedRoute.snapshot.paramMap.get("username");
-    this.latitude="";
-    this.longitude="";
+    this.username = this.activatedRoute.snapshot.paramMap.get('username');
+    console.log('init!')
+
     this.Imagenes=new Array();
-   
+
     // this.geolocation.getCurrentPosition(this.options).then((resp) => {
     //   this.latitude= resp.coords.latitude;
     //   this.longitude=resp.coords.longitude;
@@ -82,81 +85,83 @@ export class TemplateCreatePage  {
 
     this.template=this.settings.GetTemplateForm();
     console.log( this.template);
-    let group={}    
+    const group={};
     this.template.detalle.forEach(input_template=>{
-      group[input_template.controlName]=new FormControl('');  
-      
-    })
+      group[input_template.controlName]=new FormControl('');
+
+    });
     this.myFormGroup = new FormGroup(group);
-    
+
   }
   async getLocation() {
+    console.log('GET LOCATION');
     const position = await Geolocation.getCurrentPosition();
+    console.log('POSICION: ', position);
     this.latitude = position.coords.latitude;
     this.longitude = position.coords.longitude;
-    console.log("this.latitude"+this.latitude);
-    
+    console.log('this.latitude ' + this.latitude);
+
   }
   async ionViewDidEnter(){
 
-    
+
     this.platform.ready().then(() => {
    this.Init();
   });
-   
+
   }
 
   onSubmit(){
 
 
-    let request=<RequestTk>{};
+    const request=<RequestTk>{};
      let requestItems=<RequestTkItem>{};
-    
+
     request.latitude=this.latitude;
     request.longitude=this.longitude;
-    request.login=this.settings.getValue(SettingsService.setting_User)
-    
+    request.login=this.settings.getValue(SettingsService.setting_User);
+
     request.templateId=this.template.cabecera.id;
     request.templateDescripcion=this.template.cabecera.descripcion;
 
     request.items=new Array();
-    for (let key in this.myFormGroup.controls) {
+    for (const key in this.myFormGroup.controls) {
       requestItems= <RequestTkItem>{};
       requestItems.id=key;
-      requestItems.valor=this.myFormGroup.controls[key].value
-      
-      request.items.push(requestItems);      
+      requestItems.valor=this.myFormGroup.controls[key].value;
+
+      request.items.push(requestItems);
     }
-   console.log(this.myFormGroup.controls);
+   console.log('this.myFormGroup.Controls',this.myFormGroup.controls);
 
 
 
-    let  postData = new FormData();
-   
-    let filename:string;
-    
-     let imageFile:any;
-     
+    const  postData = new FormData();
+
+    let filename: string;
+
+     let imageFile: any;
+
      this.Imagenes.forEach(function(img){
-      filename="file"+img.id; 
-      
-      
-      postData.append(filename, img.imageFile);
-     }); 
-      
+      filename='file'+img.id;
 
+
+      postData.append(filename, img.imageFile);
+     });
+
+console.log('request', request);
     postData.append('tk', JSON.stringify(request));
 
-    
-    this.api.post("api/ticket/upload",postData).subscribe((result) => {
-      var respuesta=JSON.parse(JSON.stringify(result)); 
-      this.presentToast("Creo el tk " +respuesta.tk+ "!");
+
+    this.api.post('api/ticket/upload',postData).subscribe((result) => {
+      const respuesta=JSON.parse(JSON.stringify(result));
+      this.presentToast('Creo el tk ' +respuesta.tk+ '!');
       this.router.navigateByUrl('home');
     });
 
 
 
-} 
+}
 
 async openCamera(item){
   try {
@@ -166,23 +171,23 @@ async openCamera(item){
       resultType: CameraResultType.Base64,
     });
    // this.guestPicture = profilePicture.base64String;
-    
-  const date = new Date().valueOf();    
-  const imageName = date+ '.jpeg'; 
-  let rImagen= <RequestImagen>{};
+
+  const date = new Date().valueOf();
+  const imageName = date+ '.jpeg';
+  const rImagen= <RequestImagen>{};
   rImagen.id=item;
   rImagen.imageData=profilePicture.base64String;
   rImagen.image=(<any>window).Ionic.WebView.convertFileSrc(profilePicture.base64String);
-  let imageBlob:any;
+  let imageBlob: any;
   imageBlob =  this.dataURItoBlob(rImagen.imageData);
 
-  rImagen.imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' })
-  
+  rImagen.imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+
   this.Imagenes.push(rImagen);
-  this.presentToast("Imagen Agregada!");
+  this.presentToast('Imagen Agregada!');
   } catch (error) {
     console.error(error);
-    this.presentToast("Imagen no agregada!. ");
+    this.presentToast('Imagen no agregada!. ');
   }
 /*
 
@@ -192,14 +197,14 @@ async openCamera(item){
   encodingType: this.camera.EncodingType.JPEG,
   mediaType: this.camera.MediaType.PICTURE,
     }
- 
+
 
 
   this.camera.getPicture(options).then((imageData) => {
 
-  
-  const date = new Date().valueOf();    
-  const imageName = date+ '.jpeg'; 
+
+  const date = new Date().valueOf();
+  const imageName = date+ '.jpeg';
   let rImagen= <RequestImagen>{};
   rImagen.id=item;
   rImagen.imageData=imageData;
@@ -208,12 +213,12 @@ async openCamera(item){
   imageBlob =  this.dataURItoBlob(rImagen.imageData);
 
   rImagen.imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' })
-  
+
   this.Imagenes.push(rImagen);
   this.presentToast("Imagen Agregada!");
-  
+
   }, (err) => {
-     
+
     this.presentToast("Imagen no agregada!. ");
 });
 */
@@ -226,7 +231,7 @@ dataURItoBlob(dataURI) {
   for (let i = 0; i < byteString.length; i++) {
     int8Array[i] = byteString.charCodeAt(i);
    }
-  const blob = new Blob([int8Array], { type: 'image/jpeg' });    
+  const blob = new Blob([int8Array], { type: 'image/jpeg' });
  return blob;
 }
 async presentToast(msg) {
@@ -240,7 +245,7 @@ async presentToast(msg) {
   //   closeButtonText: "OK",
   });
   toast.present();
-       
+
 }
 async presentToastbottom(msg) {
   const toast = await this.toastCtrl.create({
@@ -253,18 +258,18 @@ async presentToastbottom(msg) {
   //   closeButtonText: "OK",
   });
   toast.present();
-       
+
 }
 verTks(tipo)
-{    
+{
  this.router.navigate(['/ver-tks/'+tipo]);
 }
 irHome()
-{    
+{
  this.router.navigate(['/home/']);
 }
 verMensajes()
-{    
+{
  this.router.navigate(['/mensaje/']);
 }
 

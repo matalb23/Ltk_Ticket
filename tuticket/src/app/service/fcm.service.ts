@@ -19,7 +19,7 @@ const { PushNotifications } = Plugins;
 export class FcmService {
 
   constructor(private api:ApiService,private settings:SettingsService,private router:Router) { }
-  initPush() {
+  public initPush() {
 
     
     console.log('FcmService');
@@ -55,8 +55,8 @@ export class FcmService {
        // console.log('api datas: ' + JSON.stringify(data)); 
        
         this.api.post2('api/mensajeT',data).subscribe((result) => {
-          var respuesta=JSON.parse(JSON.stringify(result)); 
-          console.log('api grabo token fcm: ' + respuesta); 
+          var respuesta=JSON.stringify(result); 
+          console.log('api grabo token fcm: ' + respuesta);
         });
 
 
