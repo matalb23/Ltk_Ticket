@@ -24,7 +24,6 @@ interface RequestImagen  {
 type RequestTkItem = {
   id: string;
   valor: string;
-
 };
  type RequestTk = {
    templateId: number;
@@ -41,13 +40,11 @@ type RequestTkItem = {
   styleUrls: ['./template-create.page.scss'],
 })
 export class TemplateCreatePage  {
-
-  //options: GeolocationOptions;
   Imagenes: RequestImagen[];
   username=null;
   template: any ;
-  latitude: any;
-  longitude: any;
+  latitude: any='';
+  longitude: any='';
   myFormGroup: FormGroup;
   constructor(private settings: SettingsService,private formBuilder: FormBuilder
     //,private geolocation: Geolocation
@@ -59,8 +56,7 @@ export class TemplateCreatePage  {
      private activatedRoute: ActivatedRoute
      , private platform: Platform
     ) {
-      this.latitude='';
-      this.longitude='';
+      
       this.getLocation();
 
     }

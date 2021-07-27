@@ -26,8 +26,8 @@ It will install latest v3, which it’s RC.0 at the moment, so beta 3 is very ol
 (and do it for all the other packages, cli, core and ios)
 
 
-
-npx cap sync
+npm run build
+npx cap sync android
 npx cap open android
 
 ESTE ME FUNCIONA
