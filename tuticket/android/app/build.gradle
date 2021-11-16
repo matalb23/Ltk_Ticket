@@ -5,9 +5,9 @@ android {
     defaultConfig {
         applicationId "ltkticket.latikait.com"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion targetSdkVersion
+        versionCode 5
+        versionName '5'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
