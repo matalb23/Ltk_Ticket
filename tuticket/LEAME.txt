@@ -39,7 +39,7 @@ http://apptkweb.latikait.com.ar/pdf_tk?par_tk=191
 
 Pa publicar tocar la version en
 File > Project Structure > Modules > Default Config
-Version actual 5
+android Version actual 5
 
 PARA ELECTRON; AUN NO LO INSTALE
 
