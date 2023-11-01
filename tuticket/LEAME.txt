@@ -77,3 +77,12 @@ Also, if you're still using the original firebase plugin you should replace it w
 And cordova clean android then rebuild.
 
 Note that you also need Android SDK 28 for it to work, and I recommend updating Cordova and ionic as well.
+
+
+para eliminar el dark:
+https://stackoverflow.com/questions/63794562/disable-dark-theme-in-ionic
+
+
+agregue esto en androidmanifest.xml por el error de 
+android:exported="true"
+por el error Manifest merger failed : Apps targeting Android 12 and higher are required to specify an explicit value for `android:exported` when the corresponding component has an intent filter defined. See https://developer.android.com/guide/topics/manifest/activity-element#exported for details.
